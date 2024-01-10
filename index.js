@@ -39,6 +39,8 @@ productsList.addEventListener('click', e => {
 
 //Funcion para mostrar HTML
 const showHTML = () => {
+    // Limpiar HTML
+    rowProduct.innerHTML = '';
 
     allproducts.forEach(product => {
         const containerProduct = document.createElement('div');
