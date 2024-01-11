@@ -1,3 +1,4 @@
+
 const btnCart = document.querySelector('.container-cart-icon');
 const containerCartProducts = document.querySelector(
     '.container-cart-products')
@@ -8,7 +9,7 @@ btnCart.addEventListener('click', () => {
 
 /* ========================= */
 const cartInfo = document.querySelector('.cart-product');
-const rowProduct = document.querySelector('.row-productor');
+const rowProduct = document.querySelector('.row-product');
 
 //Lista de todos los contenedores de los productos 
 const productsList =document.querySelector('.container-items');
@@ -30,7 +31,21 @@ productsList.addEventListener('click', e => {
             price: product.querySelector('p').textContent,
         };
 
-        allproducts = [...allproducts, infoProduct];
+        const exits = allproducts.some(product => product.title === infoProduct.title)
+        
+        if (exits){
+            const products = allproducts.map(product => {
+                if(product.title === infoProduct.title){
+                    product.quantity++;
+                    return product
+                } else{
+                    return product
+                }
+            })
+            allproducts = [...products];
+        } else {
+            allproducts = [...allproducts, infoProduct];
+        }
 
         showHTML();
     }
@@ -42,6 +57,9 @@ const showHTML = () => {
     // Limpiar HTML
     rowProduct.innerHTML = '';
 
+    let total = 0;
+    let totalOfProducts = 0;
+
     allproducts.forEach(product => {
         const containerProduct = document.createElement('div');
         containerProduct.classList.add('cart-product');
@@ -51,7 +69,7 @@ const showHTML = () => {
                 <span class="cantidad-producto-carrito">${product.quantity}</span>
                 <p class="titulo-producto-carrito">${product.title}</p>
                 <span class="precio-producto-carrito">${product.price}</span>
-        </div>
+            </div>
         <svg 
             xmlns="http://www.w3.org/2000/svg" 
             fill="none" viewBox="0 0 24 24"
