@@ -63,8 +63,9 @@ productsList.addEventListener('click', e => {
             product => product.title !== title
         );
 
-        console.log(allproducts)
-        showHTML()
+        console.log(allproducts);
+
+        showHTML();
     }
  });
 
@@ -77,7 +78,6 @@ const showHTML = () => {
            <p class="cart-empty">El carrito esta vacio</p>
         `
     }
-
 
 
     // Limpiar HTML
