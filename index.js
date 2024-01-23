@@ -17,7 +17,9 @@ const productsList =document.querySelector('.container-items');
 //variable de arreglos de productos 
 let allproducts = [];
 
+const valorTotal = document.querySelector('.total-pagar')
 
+const countProducts = document.querySelector('#contador-productos')
 
 
 productsList.addEventListener('click', e => {
@@ -52,8 +54,32 @@ productsList.addEventListener('click', e => {
 
  });
 
+ rowProduct.addEventListener('click', (e) => {
+    if(e.target.classList.contains('icon-close')){
+        const product = e.target.parentElement
+        const title = product.querySelector('p').textContent
+
+        allproducts = allproducts.filter(
+            product => product.title !== title
+        );
+
+        console.log(allproducts)
+        showHTML()
+    }
+ });
+
 //Funcion para mostrar HTML
 const showHTML = () => {
+
+
+    if(!allproducts.length){
+        containerCartProducts.innerHTML=`
+           <p class="cart-empty">El carrito esta vacio</p>
+        `
+    }
+
+
+
     // Limpiar HTML
     rowProduct.innerHTML = '';
 
@@ -87,6 +113,13 @@ const showHTML = () => {
         `;
 
         rowProduct.append(containerProduct);
+
+        total =
+        total + parseInt(product.quantity * product.price.slice(1));
+        totalOfProducts = totalOfProducts + product.quantity;
     });
+
+    valorTotal.innerText = `$${total}`;
+    countProducts.innerText = totalOfProducts;
 
 };
