@@ -43,7 +43,7 @@ productsList.addEventListener('click', e => {
                 } else{
                     return product
                 }
-            })
+            });
             allproducts = [...products];
         } else {
             allproducts = [...allproducts, infoProduct];
@@ -64,7 +64,6 @@ productsList.addEventListener('click', e => {
         );
 
         console.log(allproducts);
-
         showHTML();
     }
  });
@@ -115,7 +114,7 @@ const showHTML = () => {
         rowProduct.append(containerProduct);
 
         total =
-        total + parseInt(product.quantity * product.price.slice(1));
+                total + parseInt(product.quantity * product.price.slice(1));
         totalOfProducts = totalOfProducts + product.quantity;
     });
 
